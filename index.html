@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gracias, Profe 🏁</title>
+  <meta name="description" content="Un regalo especial de agradecimiento.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="fx"></canvas>
+
+  <!-- PORTADA -->
+  <header class="hero">
+    <p class="tag">// regalo_especial.js</p>
+    <h1>GRACIAS,<br><span class="nombre-profe">PROFE</span></h1>
+    <p class="sub">Para alguien que nunca dejó que me quedara atascada en el barro.</p>
+    <button id="btnArrancar" class="btn">🏍️ Arrancar motor</button>
+  </header>
+
+  <!-- PISTA DE MOTOCROSS -->
+  <section class="track" aria-hidden="true">
+    <div class="ramp"></div>
+    <div class="ramp ramp--down"></div>
+    <div id="moto" class="moto">
+      <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+        <!-- rueda trasera -->
+        <g class="wheel" style="transform-origin:45px 100px">
+          <circle cx="45" cy="100" r="25" fill="none" stroke="#111" stroke-width="8"/>
+          <circle cx="45" cy="100" r="29" fill="none" stroke="#111" stroke-width="3" stroke-dasharray="3 4"/>
+          <line x1="45" y1="78" x2="45" y2="122" stroke="#9aa" stroke-width="1.5"/>
+          <line x1="23" y1="100" x2="67" y2="100" stroke="#9aa" stroke-width="1.5"/>
+          <line x1="30" y1="85" x2="60" y2="115" stroke="#9aa" stroke-width="1.5"/>
+          <line x1="60" y1="85" x2="30" y2="115" stroke="#9aa" stroke-width="1.5"/>
+          <circle cx="45" cy="100" r="5" fill="#ddd"/>
+        </g>
+        <!-- rueda delantera -->
+        <g class="wheel" style="transform-origin:160px 100px">
+          <circle cx="160" cy="100" r="25" fill="none" stroke="#111" stroke-width="8"/>
+          <circle cx="160" cy="100" r="29" fill="none" stroke="#111" stroke-width="3" stroke-dasharray="3 4"/>
+          <line x1="160" y1="78" x2="160" y2="122" stroke="#9aa" stroke-width="1.5"/>
+          <line x1="138" y1="100" x2="182" y2="100" stroke="#9aa" stroke-width="1.5"/>
+          <line x1="145" y1="85" x2="175" y2="115" stroke="#9aa" stroke-width="1.5"/>
+          <line x1="175" y1="85" x2="145" y2="115" stroke="#9aa" stroke-width="1.5"/>
+          <circle cx="160" cy="100" r="5" fill="#ddd"/>
+        </g>
+        <!-- basculante y suspensión -->
+        <line x1="45" y1="100" x2="95" y2="88" stroke="#444" stroke-width="6" stroke-linecap="round"/>
+        <line x1="160" y1="100" x2="140" y2="48" stroke="#c9c9c9" stroke-width="6" stroke-linecap="round"/>
+        <!-- motor y escape -->
+        <rect x="84" y="74" width="32" height="22" rx="4" fill="#555"/>
+        <path d="M88 92 Q70 92 62 70 L52 66" fill="none" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+        <!-- guardabarros y tanque -->
+        <path d="M40 58 L98 64 L72 70 Z" fill="#ff6b1a"/>
+        <path d="M80 70 L134 52 L146 60 L118 80 Z" fill="#ff6b1a"/>
+        <path d="M146 62 L182 70 L150 72 Z" fill="#ff6b1a"/>
+        <!-- sillín -->
+        <line x1="66" y1="64" x2="112" y2="56" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+        <!-- placa número -->
+        <rect x="138" y="56" width="16" height="14" rx="2" fill="#fff" transform="rotate(-20 146 63)"/>
+        <text x="140" y="67" font-size="9" font-family="monospace" font-weight="bold" fill="#111" transform="rotate(-20 146 63)">01</text>
+        <!-- manubrio -->
+        <line x1="140" y1="48" x2="128" y2="40" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+        <!-- piloto -->
+        <path d="M100 58 L120 72 L108 90" fill="none" stroke="#1e2a4a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="100" y1="56" x2="118" y2="28" stroke="#ff6b1a" stroke-width="11" stroke-linecap="round"/>
+        <path d="M116 32 L130 40" fill="none" stroke="#ff6b1a" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="123" cy="18" r="12" fill="#f2f2f2"/>
+        <path d="M118 12 L140 18 L126 22 Z" fill="#ff6b1a"/>
+        <rect x="124" y="16" width="10" height="7" rx="2" fill="#111"/>
+      </svg>
+    </div>
+    <div class="ground"></div>
+    <div class="flag">🏁</div>
+  </section>
+
+  <!-- TERMINAL CON CÓDIGO -->
+  <section class="terminal reveal">
+    <div class="bar">
+      <span></span><span></span><span></span>
+      <p>gratitud.js</p>
+    </div>
+    <pre id="codigo"></pre>
+  </section>
+
+  <!-- TARJETAS -->
+  <section class="cards">
+    <article class="card reveal">
+      <div class="icon">🌀</div>
+      <h3>Curvas difíciles</h3>
+      <p>Cuando la pista se puso complicada, usted estuvo ahí para ayudarme a tomar cada curva sin caer.</p>
+    </article>
+    <article class="card reveal">
+      <div class="icon">✨</div>
+      <h3>Carisma a fondo</h3>
+      <p>Su carisma y su forma tan buena de enseñar hacen que hasta el código más difícil se sienta como una vuelta en pista.</p>
+    </article>
+    <article class="card reveal">
+      <div class="icon">🚀</div>
+      <h3>Impulso para saltar</h3>
+      <p>Me enseñó que después de cada caída hay una rampa para volver a volar más alto.</p>
+    </article>
+  </section>
+
+  <!-- MENSAJE FINAL -->
+  <section class="finish reveal">
+    <div class="checker"></div>
+    <h2>Meta alcanzada 🏆</h2>
+    <p id="mensaje"></p>
+    <p class="firma">Con cariño y gratitud,<br><strong class="nombre-de">Tu estudiante</strong></p>
+    <button id="btnCelebrar" class="btn btn--alt">🎉 Celebrar</button>
+  </section>
+
+  <footer>
+    <code>while (vida.continua()) { recordar(profe); }</code>
+    <p>Hecho con ❤️ + HTML, CSS y JS</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

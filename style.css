@@ -1,0 +1,269 @@
+:root {
+  --bg: #0d0d10;
+  --panel: #16161c;
+  --orange: #ff6b1a;
+  --orange-2: #ffb21a;
+  --dirt: #4a3220;
+  --dirt-2: #2e1f14;
+  --green: #39ff88;
+  --text: #f2f2f2;
+  --muted: #a7a7b3;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,107,26,.18), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(57,255,136,.08), transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+#fx {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* ---------- PORTADA ---------- */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem 1rem;
+}
+
+.tag {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--green);
+  font-size: .95rem;
+  margin-bottom: 1rem;
+  opacity: .9;
+}
+
+h1 {
+  font-family: "Bungee", sans-serif;
+  font-size: clamp(2.6rem, 9vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: 2px;
+}
+
+h1 span {
+  background: linear-gradient(90deg, var(--orange), var(--orange-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 40px rgba(255,107,26,.35);
+}
+
+.sub {
+  margin: 1.2rem auto 2rem;
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.btn {
+  font-family: "Bungee", sans-serif;
+  font-size: 1.05rem;
+  padding: .9rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #111;
+  background: linear-gradient(90deg, var(--orange), var(--orange-2));
+  box-shadow: 0 8px 30px rgba(255,107,26,.4);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 36px rgba(255,107,26,.55); }
+.btn:active { transform: scale(.97); }
+.btn--alt { margin-top: 1.5rem; }
+
+/* ---------- PISTA ---------- */
+.track {
+  position: relative;
+  height: 320px;
+  margin: 1rem 0 3rem;
+  overflow: hidden;
+}
+
+.ground {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 60px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(0,0,0,.18) 22px 26px),
+    linear-gradient(var(--dirt), var(--dirt-2));
+  border-top: 4px solid #6b4a2e;
+}
+
+.ramp {
+  position: absolute;
+  bottom: 60px;
+  left: 34%;
+  width: 0; height: 0;
+  border-left: 110px solid transparent;
+  border-bottom: 55px solid #6b4a2e;
+}
+.ramp--down {
+  left: 64%;
+  border-left: none;
+  border-right: 110px solid transparent;
+}
+
+.flag {
+  position: absolute;
+  right: 3%;
+  bottom: 62px;
+  font-size: 2.6rem;
+  animation: waving 1.2s ease-in-out infinite;
+  transform-origin: bottom left;
+}
+
+.moto {
+  position: absolute;
+  bottom: 52px;
+  left: -220px;
+  width: 190px;
+  will-change: transform;
+}
+.moto svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 6px 6px rgba(0,0,0,.5)); }
+
+.moto.running .wheel { animation: spin .35s linear infinite; }
+
+/* ---------- TERMINAL ---------- */
+.terminal {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  background: var(--panel);
+  border: 1px solid #2a2a35;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  width: calc(100% - 2rem);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: .7rem 1rem;
+  background: #1f1f28;
+  border-bottom: 1px solid #2a2a35;
+}
+.bar span { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+.bar span:nth-child(2) { background: #febc2e; }
+.bar span:nth-child(3) { background: #28c840; }
+.bar p {
+  margin-left: auto;
+  font-family: "JetBrains Mono", monospace;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+#codigo {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(.78rem, 2.4vw, .98rem);
+  padding: 1.4rem;
+  min-height: 420px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #d8d8e0;
+}
+#codigo::after {
+  content: "▋";
+  color: var(--green);
+  animation: blink 1s step-end infinite;
+}
+
+.kw  { color: #ff7ab2; }
+.str { color: var(--orange-2); }
+.num { color: #7ad7ff; }
+.com { color: #6b6b7a; font-style: italic; }
+.fn  { color: var(--green); }
+
+/* ---------- TARJETAS ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.3rem;
+  max-width: 1000px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+}
+
+.card {
+  background: linear-gradient(160deg, #1b1b23, #121217);
+  border: 1px solid #2a2a35;
+  border-radius: 16px;
+  padding: 1.6rem;
+  transition: transform .25s ease, border-color .25s ease;
+}
+.card:hover { transform: translateY(-6px) rotate(-.5deg); border-color: var(--orange); }
+.card .icon { font-size: 2.2rem; margin-bottom: .6rem; }
+.card h3 { font-family: "Bungee", sans-serif; font-weight: 400; color: var(--orange); margin-bottom: .4rem; }
+.card p { color: var(--muted); }
+
+/* ---------- MENSAJE FINAL ---------- */
+.finish {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  width: calc(100% - 2rem);
+  text-align: center;
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 0 1.6rem 2.4rem;
+  border: 1px solid #2a2a35;
+  overflow: hidden;
+}
+
+.checker {
+  height: 26px;
+  margin: 0 -1.6rem 2rem;
+  background:
+    conic-gradient(#fff 25%, #111 0 50%, #fff 0 75%, #111 0) 0 0 / 26px 26px;
+}
+
+.finish h2 {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+#mensaje { font-size: 1.12rem; color: #e4e4ea; }
+.firma { margin-top: 1.6rem; color: var(--muted); }
+.firma strong { color: var(--orange); font-size: 1.2rem; }
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+footer code { font-family: "JetBrains Mono", monospace; color: var(--green); display: block; margin-bottom: .5rem; }
+
+/* ---------- ANIMACIONES ---------- */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes waving { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+
+@media (max-width: 600px) {
+  .moto { width: 130px; }
+  .track { height: 280px; }
+  .ramp { border-left-width: 70px; border-bottom-width: 38px; }
+  .ramp--down { border-right-width: 70px; }
+}
